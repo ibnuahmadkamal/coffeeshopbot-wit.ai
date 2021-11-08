@@ -40,79 +40,10 @@ def webhook():
 					
 					response = None
 					#text handle by wit.ai
-					intent_name,sentiment_value = wit_response(messaging_text)
-					
-					#mapping
-					if intent_name == "gretting":
-						response = """Welcome to our coffee shop
-									Please select the option bellow according to your need
-
-									1. Coffeeshop Menu 
-									2. Make an Order
-									3. Check order Status
-									4. Reservation 
-									5. Get our Location
-									6. Contact Us"""
-
-					elif intent_name =="menu":
-						response = """You can see our menu in the list below
-										==============================
-										Signature menu
-
-										1. Drinks
-										Single origin
-										2. Foods
-										Tahu Walik
-										==============================
-										Drinks
-
-										1. Single origin 
-										2. Americano
-										3.Cappucino
-										==============================
-										Foods
-
-										1. Tahu walik
-										2. French fries
-										3. Mendoan
-										
-										Please type what you want order"""
-
-					elif intent_name == "make_an_order":
-						response = "Please enter the name of drinks or foods you want to order"
-
-					elif intent_name == "order_status":
-						response = "Please enter your Order ID"
-
-					elif intent_name == "reservation":
-						response = """Please enter the following data for reservation
-										Name =
-										Address =
-										Ordered Menu =
-										Order Date =
-										Order Time ="""
-					
-					elif intent_name == "location":
-						response = "You can access our coffee shop location via the following link(#Link)"
-
-					elif intent_name == "contact_us":
-						response = "What can we help?"
-					
-					elif intent_name == "buy_coffe":
-						if sentiment_value == "positive" or sentiment_value == "neutral":
-							response = "you made an order ......"
-						else:
-							response = "please use polite word for making order"
-
-					else:
-						response = "Your choice not in menu please type Hello to star the conversation."
-					
-					# Echo
-					#response = messaging_text
+					response = wit_response(messaging_text)
 					#send response
 					bot.send_text_message(sender_id, response)
 					
-
 	return "ok", 200
 
 #def log(message):
